@@ -40,4 +40,12 @@ describe(Stylist) do
       expect(Stylist.find(new_stylist.id())).to(eq(new_stylist))
     end
   end
+  describe('#update') do
+    it('updates the stylists in the database') do
+      new_stylist = Stylist.new({:name => "Yun", :id => nil})
+      new_stylist.save()
+      new_stylist.update({:name => "Yun"})
+      expect(new_stylist.name()).to(eq("Yun"))
+    end
+  end
 end
