@@ -7,6 +7,13 @@ describe(Stylist) do
       expect(new_stylist.name()).to(eq("Lee"))
     end
   end
+  describe("#id") do
+    it("sets its ID when you save it") do
+      new_stylist = Stylist.new({:name => "Lee", :id => nil})
+      new_stylist.save()
+      expect(new_stylist.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
   describe('.all') do
     it('is empty at first') do
       expect(Stylist.all()).to(eq([]))
@@ -24,6 +31,13 @@ describe(Stylist) do
       new_stylist = Stylist.new({:name => "Lee", :id => nil})
       new_stylist2 = Stylist.new({:name => "Lee", :id => nil})
       expect(new_stylist.name()).to(eq(new_stylist2.name()))
+    end
+  end
+  describe('.find') do
+    it('will look for a stylist by its ID') do
+      new_stylist = Stylist.new({:name => "Lee", :id => nil})
+      new_stylist.save()
+      expect(Stylist.find(new_stylist.id())).to(eq(new_stylist))
     end
   end
 end
