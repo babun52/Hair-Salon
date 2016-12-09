@@ -17,6 +17,19 @@ describe(Client) do
       expect(new_client.name()).to(eq("James"))
     end
   end
+  describe("#id") do
+    it("sets its ID when you save it") do
+      new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
+      new_client.save()
+      expect(new_client.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
+  describe("#stylist_id") do
+    it("lets you read the list ID out") do
+      new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
+      expect(new_client.stylist_id()).to(eq(1))
+    end
+  end
   describe('.all') do
     it('is empty at first') do
       expect(Client.all()).to(eq([]))
@@ -34,6 +47,13 @@ describe(Client) do
       new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
       new_client2 = Client.new({:name => "James", :id => nil, :stylist_id => 1})
       expect(new_client).to(eq(new_client2))
+    end
+  end
+  describe('.find') do
+    it('returns a client by its ID number') do
+      new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
+      new_client.save()
+      expect(Client.find(new_client.id())).to(eq(new_client))
     end
   end
 end
