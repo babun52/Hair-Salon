@@ -7,4 +7,9 @@ describe(Stylist) do
       expect(new_stylist.name()).to(eq("Lee"))
     end
   end
+  describe('.all') do
+    it('is empty at first') do
+      expect(Stylist.all()).to(eq([]))
+    end
+  end
 end
