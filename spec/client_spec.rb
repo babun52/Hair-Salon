@@ -15,7 +15,7 @@ describe(Client) do
     end
   end
   describe("#stylist_id") do
-    it("lets you read the list ID out") do
+    it("reads the client ID out") do
       new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
       expect(new_client.stylist_id()).to(eq(1))
     end
