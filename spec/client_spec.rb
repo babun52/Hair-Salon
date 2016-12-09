@@ -34,6 +34,6 @@ describe(Client) do
       new_client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
       new_client2 = Client.new({:name => "James", :id => nil, :stylist_id => 1})
       expect(new_client).to(eq(new_client2))
-    end    
+    end
   end
 end

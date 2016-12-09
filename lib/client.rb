@@ -22,4 +22,7 @@ class Client
     result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
+  define_method(:==) do |another_client|
+    self.name() == (another_client.name())
+  end
 end
