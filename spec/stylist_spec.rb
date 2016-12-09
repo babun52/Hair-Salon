@@ -48,4 +48,14 @@ describe(Stylist) do
       expect(new_stylist.name()).to(eq("Yun"))
     end
   end
+  describe('#delete') do
+    it("lets you delete a stylist from the database") do
+      new_stylist = Stylist.new({:name => "Lee", :id => nil})
+      new_stylist.save()
+      new_stylist2 = Stylist.new({:name => "Yun", :id => nil})
+      new_stylist2.save()
+      new_stylist.delete()
+      expect(Stylist.all()).to(eq([new_stylist2]))
+    end
+  end
 end
