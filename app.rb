@@ -8,23 +8,29 @@ require("pg")
 DB = PG.connect({:dbname => "hair_salon"})
 
 get('/') do
+  erb(:index)
+end
+
+post('/stylists') do
+  name = params.fetch('stylists')
+  stylist = Stylist.new({:name => name, :id => nil})
+  stylist.save()
   @stylists = Stylist.all()
   @clients = Client.all()
   erb(:index)
 end
 
-post('/new_stylists') do
-  name = params.fetch('stylist')
-  stylist = Stylist.new({:name => name, :id => nil})
-  stylist.save()
-  @stylists = Stylist.all()
+get("/stylists/:id") do
+  @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:index)
 end
 
-post('/new_clients') do
-  name = params.fetch('client')
-  client = Client.new({:name => name, :id => nil})
+post('/clients') do
+  name = params.fetch('clients')
+  stylist_id = params.fetch('stylist_id').to_i()
+  client = Client.new({:name => name, :id => nil, :stylist_id => stylist_id})
   client.save()
+  @stylists = Stylist.all()
   @clients = Client.all()
   erb(:index)
 end

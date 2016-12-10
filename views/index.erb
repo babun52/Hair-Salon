@@ -1,53 +1,56 @@
 <h1 class = "jumbotron">Welcome to Henni's Hair Salon</h1>
+<div class="well">
+  <% if @stylists.any?() %>
+  <h2>Click on a stylist to see its clients: </h2>
 
-<% if @stylists.any?() %>
-<h2>Click on a stylist to see its clients: </h2>
-
-<ul>
-  <% @stylists.each do |stylist| %>
-  <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <h4>There are no stylists yet</h4>
   <% end %>
-</ul>
-<% else %>
-<h4>There are no stylists yet</h4>
-<% end %>
+</div>
 
-<% if @clients.any?() %>
-<h2>Click on a client: </h2>
+<div class="well">
+  <% if @clients.any?() %>
+  <h2>Click on a client: </h2>
 
-<ul>
-  <% @clients.each do |client| %>
-  <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+  <ul>
+    <% @clients.each do |client| %>
+    <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <h4>There are no clients yet</h4>
   <% end %>
-</ul>
-<% else %>
-<h4>There are no clients yet</h4>
-<% end %>
+</div>
 
-<div class="">
+<div class="well">
   <h3>Add a New Stylist: </h3>
 
-  <form action="/new_stylists" method="post">
-    <label for="stylist">Stylist Name:</label>
-    <input id="stylist" name="stylist" type="text">
+  <form action="/stylists" method="post">
+    <label for="stylists">Stylist Name:</label>
+    <input id="stylists" name="stylists" type="text" placeholder="Enter Stylist Name">
 
     <button type="submit">Add Stylist</button>
   </form>
 </div>
 
-<div class="">
+<div class="well">
   <h3> Add a New Client to Stylist: </h3>
 
-  <label for="stylist_id">Select a Stylist</label>
-  <select id='stylist_id' name='stylist_id' type='text'>
-    <% @stylists.each() do |stylist| %>
-     <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
-    <% end %>
-  </select>
+  <form action="/clients" method="post">
+    <label for="stylist_id">Select a Stylist</label>
+    <select id='stylist_id' name='stylist_id' type='text'>
+      <% @stylists.each() do |stylist| %>
+       <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
+      <% end %>
+    </select>
 
-  <form action="/new_clients" method="post">
-    <label for="client">Client Name: </label>
-    <input id="client" name="client" type="text">
+    <label for="clients">Client Name: </label>
+    <input id="clients" name="clients" type="text" placeholder="Enter Your Name">
 
     <button type="submit">Add Client</button>
   </form>
