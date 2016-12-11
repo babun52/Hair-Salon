@@ -45,13 +45,3 @@ describe('seeing clients for a stylist', {:type => :feature}) do
     expect(page).to have_content(stylist.name())
   end
 end
-describe('seeing stylists for a client', {:type => :feature}) do
-  it('allows to click a client to see the stylist') do
-    client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
-    client.save()
-    stylist = Stylist.new({:name => 'Lee', :id => nil})
-    stylist.save()
-    visit('/')
-    expect(page).to have_content(client.name())
-  end
-end

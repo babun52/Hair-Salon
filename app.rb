@@ -29,7 +29,7 @@ get("/stylists/:id") do
 end
 
 patch("/stylists/:id") do
-  name = params.fetch("name")
+  name = params.fetch("rename")
   @stylist = Stylist.find(params.fetch("id").to_i())
   @stylist.update({:name => name, :id => nil})
   @clients = Client.all()
@@ -61,7 +61,7 @@ get("/clients/:id") do
 end
 
 patch("/clients/:id") do
-  name = params.fetch("name")
+  name = params.fetch("rename")
   @client = Client.find(params.fetch("id").to_i())
   @client.update({:name => name, :id => nil})
   @stylists = Stylist.all()

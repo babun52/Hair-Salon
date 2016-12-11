@@ -16,19 +16,28 @@ The following user stories should be completed:
 
 ## Setup/Installation Requirements
 
-* __
-* __
-* __
-* __
-* __
+Clone from Github:
+```
+ $ git clone https://github.com/babun52/Hair-Salon
+ $ cd Hair-Salon
+ $ bundle
+ $ ruby app.rb
+```
 
-## Known Bugs
-
-__
+In PSQL:
+```
+CREATE DATABASE hair_salon;_
+\c hair_salon;
+CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);
+CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylist_id int);
+CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
+```
+Browse localhost:4567 in your web browser
 
 ## Support and contact details
 
-_Github: https://github.com/babun52 Email: babun5209@gmail.com_
+_Github: https://github.com/babun52_
+_Email: babun5209@gmail.com_
 
 ## Technologies Used
 
