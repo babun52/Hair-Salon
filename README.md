@@ -28,11 +28,11 @@ __
 
 ## Support and contact details
 
-__
+_Github: https://github.com/babun52 Email: babun5209@gmail.com_
 
 ## Technologies Used
 
-__
+_Ruby, Sinatra, SQL, Postgres, Bootstrap_
 
 ### License
 

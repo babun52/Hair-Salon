@@ -1,11 +1,13 @@
 <h1 class = "jumbotron">Welcome to Henni's Hair Salon</h1>
+
 <div class="well">
   <% if @stylists.any?() %>
   <h2>Click on a stylist to see its clients: </h2>
 
-  <ul>
+  <ul class="well">
     <% @stylists.each do |stylist| %>
     <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    </form>
     <% end %>
   </ul>
   <% else %>
@@ -17,7 +19,7 @@
   <% if @clients.any?() %>
   <h2>Click on a client: </h2>
 
-  <ul>
+  <ul class="well">
     <% @clients.each do |client| %>
     <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
     <% end %>
@@ -44,7 +46,7 @@
   <form action="/clients" method="post">
     <label for="stylist_id">Select a Stylist</label>
     <select id='stylist_id' name='stylist_id' type='text'>
-      <% @stylists.each() do |stylist| %>
+      <% @stylists.each() do |stylist|%>
        <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
       <% end %>
     </select>

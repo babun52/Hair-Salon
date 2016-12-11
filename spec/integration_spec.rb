@@ -35,13 +35,23 @@ describe('viewing all of the clients', {:type => :feature}) do
     expect(page).to have_content(client.name())
   end
 end
-describe('seeing details for a stylist', {:type => :feature}) do
+describe('seeing clients for a stylist', {:type => :feature}) do
   it('allows to click a stylist to see the clients') do
-    test_stylist = Stylist.new({:name => 'Lee', :id => nil})
-    test_stylist.save()
-    test_task = Task.new({:name => "James", :stylist_id => test_stylist.id()})
-    test_task.save()
-    visit('/lists')
-    expect(page).to have_content(test_task.description())
+    stylist = Stylist.new({:name => 'Lee', :id => nil})
+    stylist.save()
+    client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
+    client.save()
+    visit('/')
+    expect(page).to have_content(stylist.name())
+  end
+end
+describe('seeing stylists for a client', {:type => :feature}) do
+  it('allows to click a client to see the stylist') do
+    client = Client.new({:name => "James", :id => nil, :stylist_id => 1})
+    client.save()
+    stylist = Stylist.new({:name => 'Lee', :id => nil})
+    stylist.save()
+    visit('/')
+    expect(page).to have_content(client.name())
   end
 end

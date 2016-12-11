@@ -1,18 +1,37 @@
-<h1>Stylist: <%= @stylist.name() %></h1>
+<div class="jumbotron">
+  <h1>Stylist: <%= @stylist.name() %></h1>
+</div>
 
-<% if @stylist.clients().any?() %>
+<div class="well">
+  <% if @clients.any?() %>
   <h3>Here are all the clients in this stylist:</h3>
 
   <ul>
-    <% @stylist.clients().each() do |client| %>
-      <li><%= client.name() %> </li>
+    <% @clients.each() do |client|
+      if client.stylist_id == (@stylist.id())%>
+        <li><%= client.name() %> </li>
+      <% end %>
     <% end %>
   </ul>
-
   <% else %>
-    <p>There are no clients for this stylist!</p>
+  <h4>There are no clients yet</h4>
   <% end %>
+</div>
 
+<div class="well">
+  <form action="/stylists/<%= @stylist.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="name">Rename stylist:</label>
+    <input id="name" name="name" type="text">
+
+    <button type="submit">Update</button>
+  </form>
+</div>
 <div class="container">
-  <a href="/"><button class="btn">Home</a>
+  <form action="/stylists/<%= @stylist.id() %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+
+    <button type="submit">Delete</button>
+  </form><br>
+  <a href="/"><button class="">Home</a>
 </div>
